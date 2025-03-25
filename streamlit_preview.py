@@ -20,6 +20,7 @@ for col in ['Scientific Name', 'Drug-Diagnosis Mapping', 'Item FDA Info', 'Item 
     if col in filter_llm.columns:
         st.markdown(f"<p style='color:blue; font-weight:bold;'>{col}:</p> <p style='color:black;'>{filter_llm[col].values[0] if not filter_llm.empty else 'N/A'}</p>", unsafe_allow_html=True)
 
+st.subheader("Important Columns")
 st.subheader("Original Data")
 filter_dataset = dataset[dataset[common_column] == row_number]
 
@@ -28,7 +29,7 @@ original_data_columns = ['Claim ID', 'Review Notes', 'Item Name', 'Item Name 2',
 
 other_orginal_columns = [col for col in dataset.columns if col not in original_data_columns]
 
-st.subheader("Important Columns")
+
 for index, col in enumerate(original_data_columns):
     if col in filter_dataset.columns:
         with cols[index % 3]:  # Distribute data across the three columns
@@ -36,7 +37,7 @@ for index, col in enumerate(original_data_columns):
 
 st.info("Note: Final decision 0 indicates claim was approved and 1 indicates denial.")
 
-
+cols = st.colcumn(4)
 st.subheader("Other Columns")
 for col in other_orginal_columns:
     if col in filter_dataset.columns:
