@@ -26,10 +26,18 @@ filter_dataset = dataset[dataset[common_column] == row_number]
 cols = st.columns(3)  # Create three columns for better readability
 original_data_columns = ['Claim ID', 'Review Notes', 'Item Name', 'Item Name 2', 'Primary Diagnosis', 'Secondary Diagnosis', 'Amount Requested', 'Quantity Requested', 'Medical info', 'Service', 'Assessment', 'AI Notes', 'Policy_Active_During_Treatment', 'Days Until Expiration', 'Policy Expired', 'Age', "Denial Reason Description", "Final Decision"]
 
+other_orginal_columns = [col for col in dataset.columns if col not in original_data_columns]
+
+st.subheader("Important Columns")
 for index, col in enumerate(original_data_columns):
     if col in filter_dataset.columns:
         with cols[index % 3]:  # Distribute data across the three columns
             st.markdown(f"<p style='color:green; font-weight:bold;'>{col}:</p> <p style='color:black;'>{filter_dataset[col].values[0] if not filter_dataset.empty else 'N/A'}</p>", unsafe_allow_html=True)
 
-
 st.info("Note: Final decision 0 indicates claim was approved and 1 indicates denial.")
+
+
+st.subheader("Other Columns")
+for col in other_orginal_columns:
+    if col in filter_dataset.columns:
+        st.markdown(f"<p style='color:green; font-weight:bold;'>{col}:</p> <p style='color:black;'>{filter_dataset[col].values[0] if not filter_dataset.empty else 'N/A'}</p>", unsafe_allow_html=True)
