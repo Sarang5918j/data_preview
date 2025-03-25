@@ -37,8 +37,8 @@ for index, col in enumerate(original_data_columns):
 
 st.info("Note: Final decision 0 indicates claim was approved and 1 indicates denial.")
 
-cols = st.columns(4)
+cols = st.columns(5)
 for index, col in enumerate(other_orginal_columns):
     if col in filter_dataset.columns:
-        with cols[index % 4]:
+        with cols[index % 5]:
             st.markdown(f"<p style='color:green; font-weight:bold;'>{col}:</p> <p style='color:black;'>{filter_dataset[col].values[0] if not filter_dataset.empty else 'N/A'}</p>", unsafe_allow_html=True)
