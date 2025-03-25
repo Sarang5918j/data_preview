@@ -37,6 +37,7 @@ for index, col in enumerate(original_data_columns):
 
 st.info("Note: Final decision 0 indicates claim was approved and 1 indicates denial.")
 
+st.subheader("Other Columns")
 cols = st.columns(5)
 for index, col in enumerate(other_orginal_columns):
     if col in filter_dataset.columns:
